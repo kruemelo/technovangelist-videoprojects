@@ -1,10 +1,14 @@
-import ollama from "ollama";
+import { Ollama } from "ollama";
 import { ChromaClient } from "chromadb";
 import { getConfig } from "./utilities";
 
-const { embedmodel, mainmodel } = getConfig();
+const { embedmodel, mainmodel, LLM_HOST, CHROMA_PATH } = getConfig();
 
-const chroma = new ChromaClient({ path: "localhost:8000" });
+const ollama = new Ollama({
+  host: LLM_HOST,
+});
+
+const chroma = new ChromaClient({ path: CHROMA_PATH });
 const collection = await chroma.getOrCreateCollection({ name: "buildragwithtypescript", metadata: { "hnsw:space": "cosine" } });
 
 const query = process.argv.slice(2).join(" ");

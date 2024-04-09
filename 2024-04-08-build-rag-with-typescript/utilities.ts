@@ -1,7 +1,7 @@
 import config from "./config.json";
 import {convert} from "html-to-text";
 
-export function getConfig(): { embedmodel: string, mainmodel: string } {
+export function getConfig(): { embedmodel: string, mainmodel: string, LLM_HOST: string, CHROMA_PATH: string } {
   return config
 }
 
